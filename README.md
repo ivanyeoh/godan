@@ -1,2 +1,2 @@
-# godan
-Next.js Objection Docker Auth GraphQL
+# nagod
+Next.js Auth GraphQL Objection Docker
