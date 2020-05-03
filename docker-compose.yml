@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  graphql:
+    build: .
+    depends_on:
+      - postgres
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www:cached
+      - node_modules:/var/www/node_modules
+    ports:
+      - 3333:3000
+    environment:
+      SHELL: /bin/sh
+      NODE_ENV: development
+    command: >
+      sh -c "
+        npm i --no-optional
+        npm run dev
+      "
+  postgres:
+    image: postgres:9.2-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data:cached
+    ports:
+      - 65432:5432
+
+volumes:
+  node_modules:
+  postgres:
